@@ -39,9 +39,10 @@ class MainPreferenceFragment : PreferenceFragmentCompat() {
      * Start the dimming process
      */
     private fun activate() {
+        cancel()
+
         val dimWorkerRequest = OneTimeWorkRequest.from(DimWorker::class.java)
         WorkManager.getInstance(requireContext())
-            .also { it.cancelAllWork() }
             .enqueue(dimWorkerRequest)
 
         Snackbar.make(requireView(), R.string.snackbar_activated, Snackbar.LENGTH_SHORT).show()

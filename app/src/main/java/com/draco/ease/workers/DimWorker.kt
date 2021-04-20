@@ -26,8 +26,6 @@ class DimWorker(private val context: Context, workerParams: WorkerParameters): C
                 amount
             ).roundToInt()
 
-            Log.d("P", (amount * 100).toString())
-            Log.d("NEW", curVal.toString())
             setBrightness(curVal)
 
             delay(step)
