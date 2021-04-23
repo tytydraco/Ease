@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.*
+import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -14,8 +15,18 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.snackbar.Snackbar
 
 class MainPreferenceFragment : PreferenceFragmentCompat() {
+    private lateinit var ratio: SeekBarPreference
+    private lateinit var duration: SeekBarPreference
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main, rootKey)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        ratio = findPreference(getString(R.string.pref_ratio_key))!!
+        duration = findPreference(getString(R.string.pref_duration_key))!!
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
@@ -41,7 +52,14 @@ class MainPreferenceFragment : PreferenceFragmentCompat() {
     private fun activate() {
         cancel()
 
-        val dimWorkerRequest = OneTimeWorkRequest.from(DimWorker::class.java)
+        val dimWorkerRequest = OneTimeWorkRequest.Builder(DimWorker::class.java)
+            .setInputData(
+                Data.Builder()
+                    .putFloat(getString(R.string.pref_ratio_key), ratio.value / 100f)
+                    .putInt(getString(R.string.pref_duration_key), duration.value)
+                    .build()
+            )
+            .build()
         WorkManager.getInstance(requireContext())
             .enqueue(dimWorkerRequest)
 

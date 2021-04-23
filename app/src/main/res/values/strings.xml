@@ -29,6 +29,14 @@
     <string name="pref_cancel_summary">Cancel an active dimming service</string>
     <string name="pref_cancel_key">cancel</string>
 
+    <string name="pref_ratio_title">Brightness ratio</string>
+    <string name="pref_ratio_summary">Dim brightness to this percentage of the starting value</string>
+    <string name="pref_ratio_key">ratio</string>
+
+    <string name="pref_duration_title">Duration</string>
+    <string name="pref_duration_summary">Span in minutes during which to dim the screen</string>
+    <string name="pref_duration_key">duration</string>
+
     <string name="pref_developer_title">Developer</string>
     <string name="pref_developer_summary">Tyler Nijmeh</string>
     <string name="pref_developer_key">developer</string>

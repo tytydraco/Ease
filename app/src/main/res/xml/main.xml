@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="@string/category_config">
         <Preference
             android:title="@string/pref_activate_title"
@@ -11,6 +12,22 @@
             android:summary="@string/pref_cancel_summary"
             android:key="@string/pref_cancel_key"
             android:icon="@drawable/ic_baseline_cancel_24" />
+        <SeekBarPreference
+            android:title="@string/pref_ratio_title"
+            android:summary="@string/pref_ratio_summary"
+            android:key="@string/pref_ratio_key"
+            android:icon="@drawable/ic_baseline_trending_down_24"
+            app:showSeekBarValue="true"
+            android:defaultValue="50" />
+        <SeekBarPreference
+            android:title="@string/pref_duration_title"
+            android:summary="@string/pref_duration_summary"
+            android:key="@string/pref_duration_key"
+            android:icon="@drawable/ic_baseline_timer_24"
+            app:showSeekBarValue="true"
+            app:min="1"
+            android:defaultValue="5"
+            android:max="10" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/category_about">
         <Preference
